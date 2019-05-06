@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 // http://localhost:3000/users/add
+// Save a new person
 router.post('/add', function(req, res, next) {
  var firstName = req.body.firstName;
  var lastName = req.body.lastName;
@@ -22,9 +23,9 @@ router.post('/add', function(req, res, next) {
  });
 
  var str = JSON.stringify(persons, null, 2);
- fs.writeFileSync('./public/data/persons.json', str);
+ fs.writeFileSync('./public/data/persons.json', str);// se sterge in fiser ce a fost si se salveaza noile date
 
- // TODO save this data in persons.json
+
  res.json({
    success: true,
    message: 'TODO'
