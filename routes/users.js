@@ -37,6 +37,36 @@ router.post('/add', function (req, res, next) {
     message: 'DONE'
   });
 });
+
+router.put('/update', function (req, res, next) {
+  const id = req.body.id;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const phone = req.body.phone;
+  console.warn('update',id , firstName, lastName, phone);
+  var persons = require('../public/data/persons.json');
+
+  
+  //update
+const person=persons.find((p) =>{
+  return p.id==id;
+});
+ //=> semnul de arrow function..de citit
+
+person.firstName=firstName;
+person.lastName=lastName;
+person.phone=phone;
+
+  var str = JSON.stringify(persons, null, 2);
+  fs.writeFileSync('./public/data/persons.json', str);// se sterge in fiser ce a fost si se salveaza noile date
+
+
+  res.json({
+    success: true,
+    id,
+    message: 'DONE'
+  });
+});
 router.delete('/delete', function (req, res, next) {
   var id = req.body.id;
 
