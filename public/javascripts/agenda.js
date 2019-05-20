@@ -1,3 +1,5 @@
+
+
 var allPersons = [];
 var editPersonId;
 
@@ -38,7 +40,6 @@ function display(persons) {
     });
 
 
-    console.log('list', list);
     document.querySelector('#agenda tbody').innerHTML = list.join('');
 }
 
@@ -186,6 +187,16 @@ const editPerson = function (id) {
     editPersonId = id;
 
 }
+//if one parameter can skipp pharant (value) will be  value
+const search = value => {
+    value=value.toLowerCase();
+    const filtered = allPersons.filter(person => {
+        return person.firstName.toLowerCase().includes(value)||
+        person.lastName.toLowerCase().includes(value)||
+        person.phone.toLowerCase().includes(value)
+    });
+display(filtered);
+};
 
 function initEvents() {
     const tbody = document.querySelector('#agenda tbody');
@@ -203,6 +214,15 @@ function initEvents() {
             editPerson(id);
         }
     });
+
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', (e) => {
+        search(e.target.value);
+    })
+
+
 }
+
+
 
 initEvents();
