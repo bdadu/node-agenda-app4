@@ -1,14 +1,12 @@
-
-
 var allPersons = [];
 var editPersonId;
 
 var API_URL = {
     CREATE: '...',
-    READ: '...',
+    READ: 'users', //'data/persons.json'
     ADD: 'users/add',
     UPDATE: 'users/update',
-    DELETE: 'users/delete'
+    DELETE: 'DELETE'
 };
 var API_METHOD = {
     //ADD:'GET'
@@ -18,8 +16,8 @@ var API_METHOD = {
     UPDATE: 'PUT',
     DELETE: 'DELETE'
 }
-fetch('data/persons.json').then(function (r) {
-    return r.json();
+fetch(API_URL.READ).then(function (r) {
+    return r.json();   
 }).then(function (persons) {
     console.log('all persons', persons);
     allPersons = persons;
